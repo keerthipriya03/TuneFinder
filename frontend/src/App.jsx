@@ -31,9 +31,12 @@ export default function App() {
 
   /* ================== API ================== */
 
+  const API_URL = process.env.REACT_APP_API_URL; // <- this comes from Render environment variable
+  const response = fetch(`${API_URL}/search?q=${query}`);
+
   const fetchSongs = () => {
     setLoading(true);
-    fetch(`http://localhost:3000/search?q=${search}`)
+    fetch(`${API_URL}/search?q=${search}`)
       .then((res) => res.json())
       .then((data) => {
         setSongs(data);
